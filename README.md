@@ -22,8 +22,19 @@ cd nginx-VERSION
 make
 make install
 ```
-
 This will produce ```objs/ngx_http_geoip2_module.so```. It can be copied to your nginx module path manually if you wish.
+
+##### Error: ngx_http_geoip2_module.so "is not binary compatible":
+If you get this message after configtest you'll need to revise the configure flags.
+Get the nginx build-flags using `nginx -V`. Copy them.
+Then reconfigure the build:
+```
+./configure --add-dynamic-module=/path/to/ngx_http_geoip2_module {build-flags}
+make
+make install
+```
+
+This will produce a *binary-compatible* ```objs/ngx_http_geoip2_module.so```. It can be copied to your nginx module path manually if you wish.
 
 Add the following line to your nginx.conf:
 ```
